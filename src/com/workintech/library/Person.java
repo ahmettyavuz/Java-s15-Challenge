@@ -11,7 +11,6 @@ public abstract class Person {
         this.password = password;
     }
 
-    // Getters and Setters
     public String getId() {
         return id;
     }
