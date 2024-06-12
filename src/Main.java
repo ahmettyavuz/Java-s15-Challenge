@@ -25,10 +25,10 @@ public class Main {
             System.out.println("4. Çıkış");
 
             int systemChoice = scanner.nextInt();
-            scanner.nextLine();  // newline character
+            scanner.nextLine();
 
             if (systemChoice == 4) {
-                break;  // Exit the outer loop, terminating the program
+                break;
             }
 
             boolean exit = false;
@@ -57,12 +57,13 @@ public class Main {
                         System.out.println("4. Kitap sil");
                         System.out.println("5. Kitapları Listele");
                         System.out.println("6. Okurları Listele");
-                        System.out.println("7. Okurun ödünç aldığı kitapları göster");
-                        System.out.println("8. Ana Menüye Dön");
-                        System.out.println("9. Çıkış");
+                        System.out.println("7. Okur sil");
+                        System.out.println("8. Okurun ödünç aldığı kitapları göster");
+                        System.out.println("9. Ana Menüye Dön");
+                        System.out.println("10. Çıkış");
 
                         int choice = scanner.nextInt();
-                        scanner.nextLine();  // newline character
+                        scanner.nextLine();
 
                         switch (choice) {
                             case 1:
@@ -85,12 +86,15 @@ public class Main {
                                 library.listAllUsers();
                                 break;
                             case 7:
-                                showUserBorrowedBooks(scanner);
+                                removeUser(scanner);
                                 break;
                             case 8:
-                                exit = true;
+                                showUserBorrowedBooks(scanner);
                                 break;
                             case 9:
+                                exit = true;
+                                break;
+                            case 10:
                                 System.exit(0);
                                 break;
                             default:
@@ -173,7 +177,6 @@ public class Main {
     }
 
 
-
     private static void addBook(Scanner scanner) {
         System.out.println("Kitap ID'sini girin:");
         String bookID = scanner.nextLine();
@@ -223,6 +226,7 @@ public class Main {
         scanner.nextLine();
 
         Book book = null;
+        User user;
 
         switch (choice) {
             case 1:
@@ -255,12 +259,21 @@ public class Main {
         }
 
         if (book != null && book.getStatus()==Status.BORROWED) {
-            System.out.println("Kitap bulundu: " + book.getName() +" (Ödünç alınmış)");
+            User borrower = findBorrower(book);
+            System.out.println("Kitap bulundu: " + book.getName() + " " +borrower.getName() +" isimli okur tarafından ödünç alınmış");
         } else if(book != null && book.getStatus()==Status.AVAILABLE)  {
             System.out.println("Kitap bulundu: " + book.getName());
         } else {
             System.out.println("Kitap bulunamadı.");
         }
+    }
+    private static User findBorrower(Book book) {
+        for (User user : library.getAllUsers()) {
+            if (user.getBorrowedBooks().contains(book)) {
+                return user;
+            }
+        }
+        return null;
     }
 
     private static void updateBook(Scanner scanner) {
@@ -298,6 +311,11 @@ public class Main {
         System.out.println("Silinecek kitabın ID'sini girin:");
         String bookID = scanner.nextLine();
         library.removeBook(bookID);
+    }
+    private static void removeUser(Scanner scanner) {
+        System.out.println("Silinecek okurun ID'sini girin:");
+        String userID = scanner.nextLine();
+        library.removeUser(userID);
     }
 
     private static void listBooksByCategory(Scanner scanner) {

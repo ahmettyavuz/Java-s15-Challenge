@@ -36,7 +36,6 @@ public class User extends Person {
     }
 
     public Invoice getInvoice(Book book) {
-        // For simplicity, let's assume a fixed amount per book
         double amount = 10.0;
         Invoice invoice = new Invoice(UUID.randomUUID().toString(), this, book, amount, new Date());
         return invoice;
@@ -48,8 +47,8 @@ public class User extends Person {
 
     @Override
     public String toString() {
-        return "User{" +
-                "borrowedBooks=" + borrowedBooks +
+        return "Okur{" +
+                "Ödünç aldığı kitaplar = " + borrowedBooks +
                 '}';
     }
 }
