@@ -12,16 +12,18 @@ public class Author {
         this.name = name;
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
     }
-
     public List<Book> getBooks() {
         return books;
     }
-
     public void addBook(Book book) {
         books.add(book);
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

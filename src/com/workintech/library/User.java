@@ -46,4 +46,10 @@ public class User extends Person {
         return borrowedBooks;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "borrowedBooks=" + borrowedBooks +
+                '}';
+    }
 }

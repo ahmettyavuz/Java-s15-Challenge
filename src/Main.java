@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Main {
 
@@ -56,8 +57,9 @@ public class Main {
                         System.out.println("4. Kitap sil");
                         System.out.println("5. Kitapları Listele");
                         System.out.println("6. Okurları Listele");
-                        System.out.println("7. Ana Menüye Dön");
-                        System.out.println("8. Çıkış");
+                        System.out.println("7. Okurun ödünç aldığı kitapları göster");
+                        System.out.println("8. Ana Menüye Dön");
+                        System.out.println("9. Çıkış");
 
                         int choice = scanner.nextInt();
                         scanner.nextLine();  // newline character
@@ -83,9 +85,12 @@ public class Main {
                                 library.listAllUsers();
                                 break;
                             case 7:
-                                exit = true;
+                                showUserBorrowedBooks(scanner);
                                 break;
                             case 8:
+                                exit = true;
+                                break;
+                            case 9:
                                 System.exit(0);
                                 break;
                             default:
@@ -215,7 +220,7 @@ public class Main {
         System.out.println("3. Yazara göre kitap ara");
 
         int choice = scanner.nextInt();
-        scanner.nextLine();  // newline character
+        scanner.nextLine();
 
         Book book = null;
 
@@ -249,7 +254,9 @@ public class Main {
                 System.out.println("Geçersiz seçim. Tekrar deneyin.");
         }
 
-        if (book != null) {
+        if (book != null && book.getStatus()==Status.BORROWED) {
+            System.out.println("Kitap bulundu: " + book.getName() +" (Ödünç alınmış)");
+        } else if(book != null && book.getStatus()==Status.AVAILABLE)  {
             System.out.println("Kitap bulundu: " + book.getName());
         } else {
             System.out.println("Kitap bulunamadı.");
@@ -305,6 +312,25 @@ public class Main {
             }
         } else {
             System.out.println("Bu kategoride kitap bulunamadı.");
+        }
+    }
+    private static void showUserBorrowedBooks(Scanner scanner) {
+        System.out.println("Okurun ID'sini girin:");
+        String userID = scanner.nextLine();
+        User user = library.getUser(userID);
+
+        if (user != null) {
+            Set<Book> borrowedBooks = user.getBorrowedBooks();
+            if (!borrowedBooks.isEmpty()) {
+                System.out.println( user.getName() +"isimli okurun ödünç aldığı kitaplar:");
+                for (Book book : borrowedBooks) {
+                    System.out.println(book.getName() + " (ID: " + book.getBookID() + ")");
+                }
+            } else {
+                System.out.println("Okurun ödünç aldığı kitap bulunmamaktadır.");
+            }
+        } else {
+            System.out.println("Okur bulunamadı.");
         }
     }
 

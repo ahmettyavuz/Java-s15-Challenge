@@ -116,10 +116,10 @@ public class Library {
     public void listAllBooks() {
         System.out.println("Kitaplar:");
         for (Book book : books.values()) {
-            System.out.println("-ID: " + book.getBookID() + " Kitap ismi: " + book.getName() + " Yazar: " + book.getAuthor());
+            System.out.println("-ID: " + book.getBookID() + " Kitap ismi: " + book.getName() + " Yazar: " + book.getAuthor() + " Kategori: " + book.getCategory());
         }
-
     }
+
 
     public void listAllUsers() {
 
