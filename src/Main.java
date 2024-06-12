@@ -54,9 +54,9 @@ public class Main {
                         System.out.println("2. Kitap seç");
                         System.out.println("3. Kitap bilgilerini güncelle");
                         System.out.println("4. Kitap sil");
-                        System.out.println("5. Ana Menüye Dön");
-                        System.out.println("6. Kitapları Listele");
-                        System.out.println("7. Okurları Listele");
+                        System.out.println("5. Kitapları Listele");
+                        System.out.println("6. Okurları Listele");
+                        System.out.println("7. Ana Menüye Dön");
                         System.out.println("8. Çıkış");
 
                         int choice = scanner.nextInt();
@@ -75,17 +75,18 @@ public class Main {
                             case 4:
                                 removeBook(scanner);
                                 break;
+
                             case 5:
-                                exit = true;  // Exit the librarian loop, returning to the main menu
-                                break;
-                            case 6:
                                 library.listAllBooks();
                                 break;
-                            case 7:
+                            case 6:
                                 library.listAllUsers();
                                 break;
+                            case 7:
+                                exit = true;
+                                break;
                             case 8:
-                                System.exit(0);  // Exit the entire program
+                                System.exit(0);
                                 break;
                             default:
                                 System.out.println("Geçersiz seçim. Tekrar deneyin.");
@@ -104,7 +105,7 @@ public class Main {
                         System.out.println("7. Çıkış");
 
                         int choice = scanner.nextInt();
-                        scanner.nextLine();  // newline character
+                        scanner.nextLine();
 
                         switch (choice) {
                             case 1:
@@ -123,10 +124,10 @@ public class Main {
                                 returnBook(scanner);
                                 break;
                             case 6:
-                                exit = true;  // Exit the reader loop, returning to the main menu
+                                exit = true;
                                 break;
                             case 7:
-                                System.exit(0);  // Exit the entire program
+                                System.exit(0);
                                 break;
                             default:
                                 System.out.println("Geçersiz seçim. Tekrar deneyin.");
@@ -142,24 +143,30 @@ public class Main {
 
         scanner.close();
     }
-    private static User loginUser(Scanner scanner) {
-        System.out.println("İsmini giriniz: (lütfen küçük harfle giriniz):");
-        String userName = scanner.nextLine();
-        System.out.println("Şifresini giriniz:");
-        String userPassword = scanner.nextLine();
+    private static void loginUser(Scanner scanner) {
+        while (true) {
+            System.out.println("İsmini giriniz: (lütfen küçük harfle giriniz):");
+            String userName = scanner.nextLine();
+            System.out.println("Şifresini giriniz:");
+            String userPassword = scanner.nextLine();
 
-        for (User user : library.getAllUsers()) {
-            if (user.getName().equalsIgnoreCase(userName) && user.getPassword().equals(userPassword)) {
-                System.out.println("Okur Sistemine Giriş Başaralı. Hoşgeldin " + userName);
-                return user;
+            boolean isValidUser = false;
+            for (User user : library.getAllUsers()) {
+                if (user.getName().equalsIgnoreCase(userName) && user.getPassword().equals(userPassword)) {
+                    System.out.println("Okur Sistemine Giriş Başarılı. Hoşgeldin " + userName);
+                    isValidUser = true;
+                    break;
+                }
+            }
+
+            if (isValidUser) {
+                break;
             } else {
                 System.out.println("Geçersiz giriş. Tekrar deneyin.");
-                loginUser(scanner);
-                break;
             }
         }
-        return null;
     }
+
 
 
     private static void addBook(Scanner scanner) {
@@ -190,12 +197,12 @@ public class Main {
         System.out.println("Yeni Okur Kaydı");
         System.out.println("Id: ");
         String ID = scanner.nextLine();
-        System.out.println("İsim: ");
+        System.out.println("İsminizi girin: ");
         String name = scanner.nextLine();
-        System.out.println("Email: ");
-        String email = scanner.nextLine();
+        System.out.println("Şifre oluşturun: ");
+        String password = scanner.nextLine();
 
-        User newUser = new User(ID, name, email);
+        User newUser = new User(ID, name, password);
         library.addUser(newUser);
         System.out.println("Yeni kullanıcı kaydedildi.");
 

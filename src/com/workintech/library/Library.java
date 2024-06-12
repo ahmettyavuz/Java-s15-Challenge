@@ -28,7 +28,7 @@ public class Library {
         books.put(book.getBookID(), book);
         book.getAuthor().addBook(book);
         book.getCategory().addBook(book);
-        System.out.println("Kitap Ekledi: " + book.getName());
+        System.out.println("Kitap Eklendi: " + book.getName());
     }
 
     public void removeBook(String bookID) {
