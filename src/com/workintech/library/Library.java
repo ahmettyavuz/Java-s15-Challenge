@@ -11,12 +11,12 @@ public class Library {
         books = new HashMap<>();
         users = new HashMap<>();
 
-        books.put("1", new Book("1", new Author("Sabahattin Ali"), "Kürk Mantolu Madonna", new Category("Edebiyat"), "false", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
-        books.put("2", new Book("2", new Author("Yaşar Kemal"), "İnce Memed", new Category("Edebiyat"), "false", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
-        books.put("3", new Book("3", new Author("Orhan Pamuk"), "Masumiyet Müzesi", new Category("Aşk"), "false", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
-        books.put("4", new Book("4", new Author("Orhan Pamuk"), "Benim Adım Kırmızı", new Category("Aşk"), "false", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
-        books.put("5", new Book("5", new Author("Yaşar Kemal"), "Orta Direk", new Category("Roman"), "false", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
-        books.put("6", new Book("6", new Author("Sabahattin Ali"), "Kuyucaklı Yusuf", new Category("Roman"), "false", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
+        books.put("1", new Book("1", new Author("Sabahattin Ali"), "Kürk Mantolu Madonna", new Category("Edebiyat"), "100", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
+        books.put("2", new Book("2", new Author("Yaşar Kemal"), "İnce Memed", new Category("Edebiyat"), "100", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
+        books.put("3", new Book("3", new Author("Orhan Pamuk"), "Masumiyet Müzesi", new Category("Aşk"), "100", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
+        books.put("4", new Book("4", new Author("Orhan Pamuk"), "Benim Adım Kırmızı", new Category("Aşk"), "100", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
+        books.put("5", new Book("5", new Author("Yaşar Kemal"), "Orta Direk", new Category("Roman"), "100", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
+        books.put("6", new Book("6", new Author("Sabahattin Ali"), "Kuyucaklı Yusuf", new Category("Roman"), "100", LocalDate.of(2024, 1, 12), Status.AVAILABLE));
 
         users.put("1", new User("1", "ahmet", "123"));
         users.put("2", new User("2", "fevzi", "123"));
@@ -119,8 +119,6 @@ public class Library {
             System.out.println("-ID: " + book.getBookID() + " Kitap ismi: " + book.getName() + " Yazar: " + book.getAuthor() + " Kategori: " + book.getCategory());
         }
     }
-
-
 
     public void listAllUsers() {
 

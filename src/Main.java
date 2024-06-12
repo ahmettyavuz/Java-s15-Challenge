@@ -12,8 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Librarian librarian1 = new Librarian("1","doğancan","123");
-        Librarian librarian2 = new Librarian("2","doğan","123");
+        Librarian librarian1 = new Librarian("1","kütüphaneci1","123");
+        Librarian librarian2 = new Librarian("2","kütüphaneci2","1234");
 
         Scanner scanner = new Scanner(System.in);
 
