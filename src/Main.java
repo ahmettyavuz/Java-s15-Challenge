@@ -145,6 +145,7 @@ public class Main {
                     break;
                 case 3:
                     addUser(scanner);
+                    break;
                 default:
                     System.out.println("Geçersiz seçim. Tekrar deneyin.");
             }
@@ -340,7 +341,7 @@ public class Main {
         if (user != null) {
             Set<Book> borrowedBooks = user.getBorrowedBooks();
             if (!borrowedBooks.isEmpty()) {
-                System.out.println( user.getName() +"isimli okurun ödünç aldığı kitaplar:");
+                System.out.println( user.getName() +" isimli okurun ödünç aldığı kitaplar:");
                 for (Book book : borrowedBooks) {
                     System.out.println(book.getName() + " (ID: " + book.getBookID() + ")");
                 }
